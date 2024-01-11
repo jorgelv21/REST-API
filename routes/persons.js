@@ -22,4 +22,8 @@ router.route('/person/:id').put((req,res)=>{
   personController.update(req,res)
 });
 
+router.route('/person/:id').delete((req,res)=>{
+  personController.delete(req,res)
+})
+
 module.exports = router;

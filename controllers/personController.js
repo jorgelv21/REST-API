@@ -13,7 +13,7 @@ const personController = {
 
       res.status(201).json({ response, msg: "Pessoa cadastrada com sucesso!" });
     } catch (error) {
-      console.log(error);
+      res.status(400).json({error: "Ocorreu um erro"})
     }
   },
   get: async (req, res) => {
@@ -21,7 +21,7 @@ const personController = {
       const response = await personModel.find({});
       res.status(200).json({ response });
     } catch (error) {
-      console.log(error);
+      res.status(404).json({error: "Ocorreu um erro"})
     }
   },
   index: async (req, res) => {
@@ -31,7 +31,7 @@ const personController = {
       const response = await personModel.findOne({ _id: id });
       res.status(200).json({ response });
     } catch (error) {
-      console.log(error);
+      res.status(404).json({error: "Ocorreu um erro"})
     }
   },
   update: async (req, res) => {
@@ -44,9 +44,18 @@ const personController = {
     };
     try {
       await personModel.findByIdAndUpdate(id, person);
-      res.status(201).json({msg: "Pessoa Atualizada com Sucesso" , person});
+      res.status(201).json({ msg: "Pessoa Atualizada com Sucesso", person });
     } catch (error) {
-      console.log(error);
+      res.status(400).json({error: "Ocorreu um erro"})
+    }
+  },
+  delete: async (req, res) => {
+    const id = req.params.id;
+    try {
+      await personModel.deleteOne({_id : id})
+      res.status(201).json({msg: "Pessoa deletada com sucesso"})
+    } catch (error) {
+      res.status(400).json({error: "Ocorreu um erro"})
     }
   },
 };
