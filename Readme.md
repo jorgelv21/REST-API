@@ -32,3 +32,5 @@
 3.  Metodo **GET** Buscando uma unica pessoa por ID
 
 4.  Metodo **PUT** atualizando dados da pessoa usando o ID
+
+5. Metodo **DELETE** Deletando pessoa usando o ID
